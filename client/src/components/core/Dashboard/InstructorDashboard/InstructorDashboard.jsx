@@ -19,16 +19,17 @@ const InstructorDashboard = () => {
 
   useEffect(() => {
     (async () => {
-      //get instructor details
+      // Get instructor details
       const instructorDetails = await getInstructorDashboard(token, dispatch);
       const instructorCourses = await fetchInstructorCourses(token);
-
+  
       setCourses(instructorCourses);
       console.log("details", instructorDetails);
       console.log("courses", instructorCourses);
       setDetails(instructorDetails);
     })();
-  }, []);
+  }, [token, dispatch]);
+  
 
   const totalEarnings = details?.reduce((acc, course) => {
     return acc + course?.totalRevenue;
